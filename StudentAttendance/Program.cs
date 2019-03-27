@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 namespace StudentAttendance
 {
     public static class Program
@@ -11,14 +11,17 @@ namespace StudentAttendance
 
         public static void Main()
         {
-            
-            foreach (var student in students)
-            {
-                Console.WriteLine($"{student.Name}");
-            }
+            string[] lines = File.ReadAllLines(@"studentdata.txt");
 
+            //foreach (var student in students)
+            //{
+            //    Console.WriteLine($"{student.Name}");
+            //}
+
+            
             Console.ReadLine();
             
         }
     }
+   
 }
