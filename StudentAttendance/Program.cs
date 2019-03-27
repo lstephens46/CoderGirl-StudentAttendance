@@ -17,11 +17,34 @@ namespace StudentAttendance
             //{
             //    Console.WriteLine($"{student.Name}");
             //}
-
+            Student student = CreateStudentObject(lines[0]);
             
             Console.ReadLine();
             
         }
+        public static Student CreateStudentObject(string studentLine)
+        {
+            Student student = new Student();
+            string[] data = studentLine.Split(" ");
+            student.Name = data[0];
+            student.Scores = GetTestScores(studentLine);
+
+            return student;
+        }
+
+        private static int[] GetTestScores(string studentLine)
+        {
+            string[] data = studentLine.Split(" ");
+            int[] scores = new int[data.Length - 1];
+            for (int i = 1; i < data.Length; i++)
+            {
+                int score = int.Parse(data[i]);
+                scores.SetValue(score, i - 1);
+            }
+            return scores;
+        }
+
+
     }
-   
+
 }
