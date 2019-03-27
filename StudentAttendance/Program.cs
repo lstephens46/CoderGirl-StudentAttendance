@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 namespace StudentAttendance
 {
@@ -11,13 +12,22 @@ namespace StudentAttendance
 
         public static void Main()
         {
-            string[] lines = File.ReadAllLines(@"studentdata.txt");
+            List<Student> students = new List<Student>();
 
-            //foreach (var student in students)
-            //{
-            //    Console.WriteLine($"{student.Name}");
-            //}
-            Student student = CreateStudentObject(lines[0]);
+            string[] lines = File.ReadAllLines(@"studentdata.txt");
+            foreach (var line in lines)
+            {
+                Student student = CreateStudentObject(line);
+                if (student.HasSixOrMore())
+                {
+                    students.Add(student);
+                }
+            }
+
+            foreach (var student in students)
+            {
+                Console.WriteLine($"{student.Name}");
+            }
             
             Console.ReadLine();
             
